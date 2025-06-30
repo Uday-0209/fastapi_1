@@ -1,5 +1,5 @@
 #here we are creating models for the base
-from database import Base
+from .database import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 class users(Base):
