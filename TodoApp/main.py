@@ -7,6 +7,10 @@ app = FastAPI()
 
 Base.metadata.create_all(bind = engine)
 
+@app.get("/healthy")
+def health_check():
+    return {'status':'Healthy'}
+
 #routers are created for scalability and maintainability
 app.include_router(auth.router)
 
