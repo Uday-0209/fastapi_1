@@ -50,7 +50,7 @@ async def post_to_do(user:user_D, db: db_D,
                      todo_request:TodoRequest):
     if user is None:
         raise HTTPException(status_code=401, detail='Authentication failed')
-    todo_model = Todos(**todo_request.dict(), owner_id = user.get('id'))
+    todo_model = Todos(**todo_request.model_dump(), owner_id = user.get('id'))
 
     db.add(todo_model)
     db.commit()
@@ -74,8 +74,8 @@ async def update_todo(user:user_D, db:db_D,
     db.add(todo_model)
     db.commit()
 
-@router.delete('/todo/{todo_id}')
-async def delete_todo(user:user_D, db:db_D,todo_request:TodoRequest,todo_id :int = Path(gt=0)):
+@router.delete('/todo/{todo_id}', status_code=204)
+async def delete_todo(user:user_D, db:db_D,todo_id :int = Path(gt=0)):
     if user is None:
         raise HTTPException(status_code=401, detail='Authentication Failed')
     todo_model = db.query(Todos).filter(Todos.id == todo_id)\
