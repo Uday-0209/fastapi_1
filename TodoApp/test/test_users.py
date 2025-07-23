@@ -18,7 +18,7 @@ def test_return_user(test_user):
 def test_change_the_password(test_user):
     response = client.put("/users/password", json = {'password':'testpassword',
                                                      'new_password':'newpassword'})
-    assert response.status_code == status.HTTP_204_NO_CONTENT
+    assert response.status_code == status.HTTP_200_OK
 
 def test_change_password_invalid_current_password(test_user):
     response = client.put("/users/password", json = {

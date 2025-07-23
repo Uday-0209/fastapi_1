@@ -59,7 +59,7 @@ def test_user():
         email = "udayhiremath02@gmail.com",
         first_name = 'Uday',
         last_name = 'Hiremath',
-        hashed_password = bcrypt_context.hash('testpassowrd'),
+        hashed_password = bcrypt_context.hash('testpassword'),
         role = 'admin',
         phone_number = '8310215305'
     )
